@@ -3,7 +3,7 @@ class Api::V1::ProductsController < ApplicationController
   include TestConcern
 
   def initialize
-
+    @todos = []
   end
 
   def show
@@ -13,7 +13,44 @@ class Api::V1::ProductsController < ApplicationController
    render json:[all,find,findby] 
   end
 
+  def hash_example
+    hash_var = {interests: ['singing', 'dancing'], tech_skills: ['Ruby', 'C++']} # Hash[], {}
+    hash_obj = OpenStruct.new(hash_var)
+    hash_json = hash_var.to_json # JSON.generate({:make => "bmw", :year => "2003"})
+    
+    render json: [hash_json,hash_obj,hash_var]
+  end
+
+  def lam_proc_example
+    lamb_da = -> (s) { return "Hello "+ s }
+    lamb_da_val = lamb_da.call("Geeks")
+
+    proc_al = Proc.new {|s| s + 1}
+    proc_al_val = proc_al.call(1,2,3)
+
+    render json: [proc_al_val,lamb_da_val]
+  end
+
   def vowles
+
+    work = add_todo('commit')
+    work = add_todo('PR')
+    work = add_todo('Merge')
+
+    puts work
+
+    puts 100.downto(90).select{|x| x%2 == 0}
+
+    x = [1,2,3,4,5,6,7,8]
+    y=x
+    x.reject!{|x| x > 5}
+
+    lamb_da = -> (s) { return "Hello "+ s }
+    lamb_da_val = lamb_da.call("Geeks")
+
+    proc_al = Proc.new {|s| s + 1}
+    proc_al_val = proc_al.call(1,2,3)
+
     string ="A man is Old enough."
     arr = []
     vowels = %w(a e i o u)
@@ -22,7 +59,7 @@ class Api::V1::ProductsController < ApplicationController
       end
     end
     output = "#{arr} has #{arr.count} vowels"
-    render json: [vowels,output]
+    render json: [work,x,y,vowels,output]
   end
 
   def fibonacci
@@ -46,6 +83,8 @@ class Api::V1::ProductsController < ApplicationController
     render json: [arr]
 
   end
+
+  
 
   def missing_num
     orignal_arr = [2,5,6,9,0]

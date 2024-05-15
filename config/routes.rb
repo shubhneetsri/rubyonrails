@@ -4,6 +4,8 @@ Rails.application.routes.draw do
       resource :products do
           get 'test/:id' => 'products#test'
           get 'string_test'
+          get 'hash_example'
+          get 'lam_proc_example'
           get 'show'
           get 'missing_num'
           get 'fibonacci'
