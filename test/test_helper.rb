@@ -10,6 +10,13 @@ module ActiveSupport
     # Setup all fixtures in test/fixtures/*.yml for all tests in alphabetical order.
     fixtures :all
 
+    #config.include Devise::Test::ControllerHelpers, type: :controller
+    #config.include Devise::TestHelpers, type: :view
+
+    # Setup all environments with an example hostname and port
+    host! 'localhost'
+    port! 3000
+
     # Add more helper methods to be used by all tests here...
   end
 end

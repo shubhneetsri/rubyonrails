@@ -1,4 +1,7 @@
 class Product < ApplicationRecord
+
+    has_one :product_owner
+
     validates :name, :brand, :price, presence: true
     validates :name, presence: true, uniqueness: true
 

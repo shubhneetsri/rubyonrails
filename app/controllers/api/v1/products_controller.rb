@@ -33,6 +33,12 @@ class Api::V1::ProductsController < ApplicationController
 
   def vowles
 
+    a = "hello"
+    out1 = ''
+    #out1 = a.concat " world"
+    out2 =''
+    out2 = a + " world"
+
     work = add_todo('commit')
     work = add_todo('PR')
     work = add_todo('Merge')
@@ -59,7 +65,7 @@ class Api::V1::ProductsController < ApplicationController
       end
     end
     output = "#{arr} has #{arr.count} vowels"
-    render json: [work,x,y,vowels,output]
+    render json: [out1,out2,work,x,y,vowels,output]
   end
 
   def fibonacci
